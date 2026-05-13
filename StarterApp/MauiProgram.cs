@@ -24,6 +24,8 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>();
         builder.Services.AddSingleton<INavigationService, NavigationService>();
+        // register the item service so it can be injected into view models - Armaan
+        builder.Services.AddTransient<IItemService, ItemService>();
 
         builder.Services.AddSingleton<AppShellViewModel>();
         builder.Services.AddSingleton<AppShell>();

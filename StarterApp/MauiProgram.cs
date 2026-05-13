@@ -5,6 +5,7 @@ using StarterApp.Views;
 using System.Diagnostics;
 using StarterApp.Services;
 
+
 namespace StarterApp;
 
 public static class MauiProgram
@@ -24,8 +25,15 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>();
         builder.Services.AddSingleton<INavigationService, NavigationService>();
-        // register the item service so it can be injected into view models - Armaan
+        // register item service so it can inject into view models
         builder.Services.AddTransient<IItemService, ItemService>();
+
+        builder.Services.AddTransient<ItemListViewModel>();
+        builder.Services.AddTransient<ItemListPage>();
+
+        builder.Services.AddTransient<AddItemViewModel>();
+        builder.Services.AddTransient<AddItemPage>();
+
 
         builder.Services.AddSingleton<AppShellViewModel>();
         builder.Services.AddSingleton<AppShell>();

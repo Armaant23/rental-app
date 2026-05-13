@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="StarterApp.Views.AddItemPage"
+    Title="Add Item">
+
+    <ScrollView>
+
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label
+                Text="Add New Item"
+                FontSize="24"
+                FontAttributes="Bold" />
+
+            <Entry
+                Placeholder="Title"
+                Text="{Binding TitleText}" />
+
+            <Editor
+                Placeholder="Description"
+                HeightRequest="100"
+                Text="{Binding Description}" />
+
+            <Entry
+                Placeholder="Category"
+                Text="{Binding Category}" />
+
+            <Entry
+                Placeholder="Price Per Day"
+                Keyboard="Numeric"
+                Text="{Binding PriceText}" />
+
+            <Button
+                Text="Save Item"
+                Clicked="SaveButton_Clicked" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

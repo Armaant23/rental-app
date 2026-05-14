@@ -25,7 +25,7 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>();
         builder.Services.AddSingleton<INavigationService, NavigationService>();
-        // register item service so it can inject into view models
+        //  item service
         builder.Services.AddTransient<IItemService, ItemService>();
 
         builder.Services.AddTransient<ItemListViewModel>();

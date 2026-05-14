@@ -6,6 +6,8 @@
     xmlns:views="clr-namespace:StarterApp.Views"
     Shell.FlyoutBehavior="Flyout">
 
+ <!-- app navigation pages -->
+    
     <ShellContent
         Title="Login"
         ContentTemplate="{DataTemplate views:LoginPage}" />

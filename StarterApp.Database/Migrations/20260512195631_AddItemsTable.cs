@@ -9,7 +9,7 @@ namespace StarterApp.Database.Migrations
     /// <inheritdoc />
     public partial class AddItemsTable : Migration
     {
-        /// <inheritdoc />
+        // Creates item table with columns
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -46,7 +46,7 @@ namespace StarterApp.Database.Migrations
                 column: "OwnerId");
         }
 
-        /// <inheritdoc />
+        // removes items from table
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

@@ -12,7 +12,8 @@ public class AddItemViewModel : BaseViewModel
     public string Description { get; set; } = "";
     public string Category { get; set; } = "";
     public string PriceText { get; set; } = "";
-
+    
+// connects service to viewmodel (for saving item)
     public AddItemViewModel(IItemService itemService)
     {
         _itemService = itemService;

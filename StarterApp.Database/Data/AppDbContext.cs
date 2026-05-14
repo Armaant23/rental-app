@@ -16,7 +16,7 @@ public class AppDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (optionsBuilder.IsConfigured) return;
-
+// gets DB connection
         var connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
 
         if (string.IsNullOrEmpty(connectionString))
@@ -30,7 +30,7 @@ public class AppDbContext : DbContext
 
             connectionString = config.GetConnectionString("DevelopmentConnection");
         }
-
+// conects to postgres db
         optionsBuilder.UseNpgsql(connectionString);
     }
 
@@ -38,7 +38,7 @@ public class AppDbContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<UserRole> UserRoles { get; set; }
 
-    // Add DbSet for Item entity - this will create a table for items in the database
+    // Add DbSet for Item entity this will create a table for items in db
     public DbSet<Item> Items { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -55,6 +55,7 @@ public class AppDbContext : DbContext
             entity.Property(e => e.PasswordHash).HasMaxLength(255);
             entity.Property(e => e.PasswordSalt).HasMaxLength(255);
         });
+
 
         // Configure Role entity
         modelBuilder.Entity<Role>(entity =>

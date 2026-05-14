@@ -8,13 +8,13 @@ namespace StarterApp.Services;
 public class ItemService : IItemService
 {
     private readonly AppDbContext _db;
-
+// db connection
     public ItemService(AppDbContext db)
     {
         _db = db;
     }
 
-    // loads all items saved in the database
+    // loads all items that are saved db
     public async Task<List<Item>> GetItemsAsync()
     {
         var items = await _db.Items
@@ -24,7 +24,7 @@ public class ItemService : IItemService
         return items;
     }
 
-    // saves a new item
+    // saves new item
     public async Task AddItemAsync(Item item)
     {
         _db.Items.Add(item);

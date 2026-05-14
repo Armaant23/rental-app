@@ -20,7 +20,7 @@ public class Item
     public string Category { get; set; } = string.Empty;
 
     public string LocationName { get; set; } = string.Empty;
-
+// This is if we want location search after
     public double Latitude { get; set; }
 
     public double Longitude { get; set; }
@@ -31,6 +31,6 @@ public class Item
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-    // links this item to the person who owns it
+    // links the item to the person who owns it
     public User? Owner { get; set; }
 }

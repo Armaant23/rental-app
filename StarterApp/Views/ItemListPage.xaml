@@ -13,6 +13,9 @@
             FontSize="24"
             FontAttributes="Bold" />
 
+
+        <!-- shows all saved items -->
+
         <CollectionView ItemsSource="{Binding Items}">
 
             <CollectionView.ItemTemplate>
@@ -48,5 +51,6 @@
         </CollectionView>
 
     </VerticalStackLayout>
+
 
 </ContentPage>

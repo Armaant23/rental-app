@@ -23,12 +23,35 @@ public static class MauiProgram
 
         builder.Services.AddDbContext<AppDbContext>();
 
-        builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>();
+
+
+
+// switches between local auth and api auth
+var useApiAuth = true;
+
+if (useApiAuth)
+{
+    builder.Services.AddSingleton<IAuthenticationService>(serviceProvider =>
+    {
+        var httpClient = new HttpClient
+        {
+            BaseAddress = new Uri("https://set09102-api.b-davison.workers.dev/")
+        };
+
+        return new ApiAuthenticationService(httpClient);
+    });
+}
+else
+{
+    builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>();
+}
+
+
         builder.Services.AddSingleton<INavigationService, NavigationService>();
         //  item service
         builder.Services.AddTransient<IItemService, ItemService>();
 
-     // rental service
+ // rental service
         builder.Services.AddTransient<IRentalService, RentalService>();
 // item list page and viewmodel
         builder.Services.AddTransient<ItemListViewModel>();

@@ -19,8 +19,7 @@ public class ItemListViewModel : BaseViewModel
     }
 
 
-    // load items from database
-    
+    // gets items from database
     public async Task LoadItems()
     {
         Items.Clear();

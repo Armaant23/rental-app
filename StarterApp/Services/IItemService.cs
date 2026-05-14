@@ -11,4 +11,7 @@ public interface IItemService
     Task<Item?> GetItemByIdAsync(int id);   
     // saves new item
     Task AddItemAsync(Item item);
+
+// deletes item 
+    Task DeleteItemAsync(int id);
 }

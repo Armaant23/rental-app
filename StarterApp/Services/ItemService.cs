@@ -41,5 +41,18 @@ public class ItemService : IItemService
         await _db.SaveChangesAsync();
     }
 
+    // deletes item from database
+    public async Task DeleteItemAsync(int id)
+    {
+        var item = await _db.Items.FindAsync(id);
+
+        if (item != null)
+        {
+            _db.Items.Remove(item);
+
+            await _db.SaveChangesAsync();
+        }
+    }
+
 
 }

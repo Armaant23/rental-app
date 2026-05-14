@@ -26,4 +26,14 @@ public class ItemDetailViewModel : BaseViewModel
     {
         ItemData = await _itemService.GetItemByIdAsync(itemId);
     }
+
+
+    // delete current item
+    public async Task DeleteItem()
+    {
+        if (ItemData != null)
+        {
+            await _itemService.DeleteItemAsync(ItemData.Id);
+        }
+    }
 }

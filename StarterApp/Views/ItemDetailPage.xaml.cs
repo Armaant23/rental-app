@@ -22,13 +22,6 @@ public partial class ItemDetailPage : ContentPage
         await _viewModel.LoadItem(itemId);
     }
 
-    // sends rental request
-    private async void RentalButton_Clicked(object sender, EventArgs e)
-    {
-        await _viewModel.RequestRental();
-
-        await DisplayAlert("Success", "Rental request sent", "OK");
-    }
 
     // deletes current item
     private async void DeleteButton_Clicked(object sender, EventArgs e)

@@ -1,9 +1,9 @@
 using StarterApp.Database.Models;
 using StarterApp.Services;
+using CommunityToolkit.Mvvm.Input;
 
 namespace StarterApp.ViewModels;
-
-public class ItemDetailViewModel : BaseViewModel
+public partial class ItemDetailViewModel : BaseViewModel
 {
     private readonly IItemService _itemService;
     private readonly IRentalService _rentalService;
@@ -32,6 +32,7 @@ public class ItemDetailViewModel : BaseViewModel
     }
 
     // request to rent item
+    [RelayCommand]
     public async Task RequestRental()
     {
         if (ItemData != null)

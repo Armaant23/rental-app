@@ -1,3 +1,4 @@
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using StarterApp.Database.Models;
 
@@ -50,6 +51,11 @@ public class ApiAuthenticationService : IAuthenticationService
 
             // SecureStorage is used so the JWT is not kept as plain text in the app code
             await SecureStorage.SetAsync("jwt_token", tokenResponse.Token);
+            await SecureStorage.SetAsync("jwt_expires_at", tokenResponse.ExpiresAt.ToString("O"));
+
+            // The token is added to the default Authorization header for later API requests
+            _httpClient.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", tokenResponse.Token);
 
             // The API returns the user ID, so a basic user object is created for the app session
             _currentUser = new User
@@ -99,10 +105,39 @@ public class ApiAuthenticationService : IAuthenticationService
         }
     }
 
+    // Adds the JWT token to the request header if it is still valid
+    public async Task<bool> AddTokenToRequestAsync()
+    {
+        var token = await SecureStorage.GetAsync("jwt_token");
+        var expiryText = await SecureStorage.GetAsync("jwt_expires_at");
+
+        if (string.IsNullOrWhiteSpace(token) || string.IsNullOrWhiteSpace(expiryText))
+        {
+            return false;
+        }
+
+        if (DateTime.TryParse(expiryText, out var expiryDate))
+        {
+            if (DateTime.UtcNow >= expiryDate)
+            {
+                await LogoutAsync();
+                return false;
+            }
+        }
+
+        _httpClient.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", token);
+
+        return true;
+    }
+
     // Clears the saved JWT token and resets the current user
     public async Task LogoutAsync()
     {
         SecureStorage.Remove("jwt_token");
+        SecureStorage.Remove("jwt_expires_at");
+
+        _httpClient.DefaultRequestHeaders.Authorization = null;
 
         _currentUser = null;
         _roles.Clear();

@@ -7,7 +7,7 @@ public partial class MainPage : ContentPage
 {
     private readonly IServiceProvider _services;
 
-    
+
 // connects services and viewmodels to page
     public MainPage(MainViewModel viewModel, IServiceProvider services)
     {
@@ -29,6 +29,15 @@ public partial class MainPage : ContentPage
     private async void GoToAddItemPage(object sender, EventArgs e)
     {
         var page = _services.GetRequiredService<AddItemPage>();
+
+        await Navigation.PushAsync(page);
+    }
+
+
+    // opens rentals page
+    private async void GoToRentalsPage(object sender, EventArgs e)
+    {
+        var page = _services.GetRequiredService<RentalsPage>();
 
         await Navigation.PushAsync(page);
     }

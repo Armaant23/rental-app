@@ -28,14 +28,17 @@ public static class MauiProgram
         //  item service
         builder.Services.AddTransient<IItemService, ItemService>();
 
-        // rental service
+     // rental service
         builder.Services.AddTransient<IRentalService, RentalService>();
-        
+// item list page and viewmodel
         builder.Services.AddTransient<ItemListViewModel>();
         builder.Services.AddTransient<ItemListPage>();
-
+// item detail page and viewmodel
         builder.Services.AddTransient<ItemDetailViewModel>();
         builder.Services.AddTransient<ItemDetailPage>();
+// rentals page and viewmodel
+        builder.Services.AddTransient<RentalsViewModel>();
+builder.Services.AddTransient<RentalsPage>();
 
         builder.Services.AddTransient<AddItemViewModel>();
         builder.Services.AddTransient<AddItemPage>();

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="StarterApp.Views.ItemDetailPage"
+    Title="Item Details">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <!-- item detail -->
+        <Label
+            Text="{Binding ItemData.Title}"
+            FontSize="26"
+            FontAttributes="Bold" />
+
+        <Label
+            Text="{Binding ItemData.Description}"
+            FontSize="16" />
+
+        <Label
+            Text="{Binding ItemData.Category}"
+            FontSize="16" />
+
+        <Label
+            Text="{Binding ItemData.LocationName}"
+            FontSize="16" />
+
+        <Label
+            Text="{Binding ItemData.PricePerDay, StringFormat='£{0} per day'}"
+            FontSize="18"
+            FontAttributes="Bold" />
+
+
+    </VerticalStackLayout>
+
+
+</ContentPage>

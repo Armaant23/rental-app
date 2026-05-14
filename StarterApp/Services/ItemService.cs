@@ -24,10 +24,22 @@ public class ItemService : IItemService
         return items;
     }
 
+        // gets one item by id
+    public async Task<Item?> GetItemByIdAsync(int id)
+    {
+        var item = await _db.Items
+            .Include(i => i.Owner)
+            .FirstOrDefaultAsync(i => i.Id == id);
+
+        return item;
+    }
+
     // saves new item
     public async Task AddItemAsync(Item item)
     {
         _db.Items.Add(item);
         await _db.SaveChangesAsync();
     }
+
+
 }

@@ -59,6 +59,9 @@ else
 // item detail page and viewmodel
         builder.Services.AddTransient<ItemDetailViewModel>();
         builder.Services.AddTransient<ItemDetailPage>();
+// edit item page and viewmodel
+        builder.Services.AddTransient<EditItemViewModel>();
+        builder.Services.AddTransient<EditItemPage>();
 // rentals page and viewmodel
         builder.Services.AddTransient<RentalsViewModel>();
 builder.Services.AddTransient<RentalsPage>();

@@ -54,6 +54,15 @@ public class ItemService : IItemService
         }
     }
 
+
+// updates existing item
+public async Task UpdateItemAsync(Item item)
+{
+    _db.Items.Update(item);
+
+    await _db.SaveChangesAsync();
+}
+
 // approves rental request
 
     public async Task ApproveRentalAsync(int rentalId)

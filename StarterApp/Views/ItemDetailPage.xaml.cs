@@ -37,4 +37,22 @@ public partial class ItemDetailPage : ContentPage
 
         await Navigation.PopAsync();
     }
+
+    // opens edit page
+private async void EditButton_Clicked(object sender, EventArgs e)
+{
+    if (_viewModel.ItemData == null)
+    {
+        return;
+    }
+
+    var page = Handler.MauiContext.Services.GetService<EditItemPage>();
+
+    if (page != null)
+    {
+        await page.LoadItem(_viewModel.ItemData.Id);
+
+        await Navigation.PushAsync(page);
+    }
+}
 }

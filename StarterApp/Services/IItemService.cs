@@ -14,4 +14,7 @@ public interface IItemService
 
 // deletes item 
     Task DeleteItemAsync(int id);
+
+// updates item details
+  Task UpdateItemAsync(Item item);
 }

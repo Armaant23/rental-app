@@ -40,6 +40,15 @@
                 Margin="0,15,0,0"
                 Clicked="RentalButton_Clicked" />
 
+
+
+
+            <Button
+                Text="Edit Item"
+                Clicked="EditButton_Clicked"
+                BackgroundColor="DarkOrange"
+                TextColor="White" />
+                
             <!-- delete button -->
             <Button
                 Text="Delete Item"

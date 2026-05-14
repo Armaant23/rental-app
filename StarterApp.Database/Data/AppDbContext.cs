@@ -38,8 +38,11 @@ public class AppDbContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<UserRole> UserRoles { get; set; }
 
-    // Add DbSet for Item entity this will create a table for items in db
+    // add DbSet for Item entity this will create table for items in db
     public DbSet<Item> Items { get; set; }
+// rental requests table
+
+    public DbSet<Rental> Rentals { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -79,19 +82,38 @@ public class AppDbContext : DbContext
                   .HasForeignKey(ur => ur.RoleId);
         });
 
-        // Configure Item entity
-modelBuilder.Entity<Item>(entity =>
-{
-    entity.Property(e => e.Title).HasMaxLength(150);
-    entity.Property(e => e.Description).HasMaxLength(1000);
-    entity.Property(e => e.Category).HasMaxLength(100);
-    entity.Property(e => e.LocationName).HasMaxLength(200);
+    // Configure Item entity
+    modelBuilder.Entity<Item>(entity =>
+    {
+        entity.Property(e => e.Title).HasMaxLength(150);
+        entity.Property(e => e.Description).HasMaxLength(1000);
+        entity.Property(e => e.Category).HasMaxLength(100);
+        entity.Property(e => e.LocationName).HasMaxLength(200);
 
-    // connects the item to the owner/user
-    entity.HasOne(e => e.Owner)
-          .WithMany()
-          .HasForeignKey(e => e.OwnerId);
-});
+        // connects the item to the owner/user
+        entity.HasOne(e => e.Owner)
+                .WithMany()
+                .HasForeignKey(e => e.OwnerId);
+    });
+
+
+
+        // rental table setup
+        modelBuilder.Entity<Rental>(entity =>
+        {
+            entity.Property(e => e.Status).HasMaxLength(50);
+
+            entity.HasOne(e => e.Item)
+                .WithMany()
+                .HasForeignKey(e => e.ItemId);
+
+            entity.HasOne(e => e.Borrower)
+                .WithMany()
+                .HasForeignKey(e => e.BorrowerId);
+
+            entity.HasOne(e => e.Owner)
+                .WithMany()
+                .HasForeignKey(e => e.OwnerId);
+        });
     }
-
 }

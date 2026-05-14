@@ -7,13 +7,17 @@ public class ItemDetailViewModel : BaseViewModel
 {
     private readonly IItemService _itemService;
 
-    public Item? ItemData { get; set; }
-
+    private Item? _itemData;
+    public Item? ItemData
+    {
+        get => _itemData;
+        set => SetProperty(ref _itemData, value);
+        }
     // connects from service to viewmodel
     public ItemDetailViewModel(IItemService itemService)
     {
         _itemService = itemService;
-
+        
         Title = "Item Details";
     }
 

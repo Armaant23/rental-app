@@ -45,4 +45,31 @@ public class RentalService : IRentalService
 
         return rentals;
     }
+
+
+        // approves rental request
+    public async Task ApproveRentalAsync(int rentalId)
+    {
+        var rental = await _db.Rentals.FindAsync(rentalId);
+
+        if (rental != null)
+        {
+            rental.Status = "Approved";
+
+            await _db.SaveChangesAsync();
+        }
+    }
+
+    // rejects rental request
+    public async Task RejectRentalAsync(int rentalId)
+    {
+        var rental = await _db.Rentals.FindAsync(rentalId);
+
+        if (rental != null)
+        {
+            rental.Status = "Rejected";
+
+            await _db.SaveChangesAsync();
+        }
+    }
 }

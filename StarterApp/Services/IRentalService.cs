@@ -9,4 +9,7 @@ public interface IRentalService
     Task<List<Rental>> GetIncomingRequestsAsync(int ownerId);
 
     Task<List<Rental>> GetOutgoingRequestsAsync(int borrowerId);
+// approves and rejects rental request
+    Task ApproveRentalAsync(int rentalId);  
+Task RejectRentalAsync(int rentalId);
 }

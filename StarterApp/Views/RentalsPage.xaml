@@ -15,9 +15,7 @@
                 FontSize="26"
                 FontAttributes="Bold" />
 
-
-
-                 <!-- incoming requests -->
+            <!-- incoming requests -->
             <Label
                 Text="Incoming"
                 FontSize="20"
@@ -26,8 +24,11 @@
             <CollectionView ItemsSource="{Binding IncomingRentals}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
+
                         <Frame Margin="0,8,0,0" Padding="12">
-                            <VerticalStackLayout Spacing="4">
+
+                            <VerticalStackLayout Spacing="6">
+
                                 <Label
                                     Text="{Binding Item.Title}"
                                     FontAttributes="Bold"
@@ -35,13 +36,34 @@
 
                                 <Label
                                     Text="{Binding Status}" />
+
+                                <HorizontalStackLayout Spacing="10">
+
+                                    <Button
+                                        Text="Approve"
+                                        BackgroundColor="DarkGreen"
+                                        TextColor="White"
+                                        Clicked="ApproveButton_Clicked"
+                                        CommandParameter="{Binding Id}" />
+
+                                    <Button
+                                        Text="Reject"
+                                        BackgroundColor="DarkRed"
+                                        TextColor="White"
+                                        Clicked="RejectButton_Clicked"
+                                        CommandParameter="{Binding Id}" />
+
+                                </HorizontalStackLayout>
+
                             </VerticalStackLayout>
+
                         </Frame>
+
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-        <!-- outgoing request -->
+            <!-- outgoing requests -->
             <Label
                 Text="Outgoing"
                 FontSize="20"
@@ -51,8 +73,11 @@
             <CollectionView ItemsSource="{Binding OutgoingRentals}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
+
                         <Frame Margin="0,8,0,0" Padding="12">
+
                             <VerticalStackLayout Spacing="4">
+
                                 <Label
                                     Text="{Binding Item.Title}"
                                     FontAttributes="Bold"
@@ -60,8 +85,11 @@
 
                                 <Label
                                     Text="{Binding Status}" />
+
                             </VerticalStackLayout>
+
                         </Frame>
+
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

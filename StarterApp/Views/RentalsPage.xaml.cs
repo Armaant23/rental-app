@@ -23,4 +23,23 @@ public partial class RentalsPage : ContentPage
 
         await _viewModel.LoadRentals();
     }
+
+    // approve request
+private async void ApproveButton_Clicked(object sender, EventArgs e)
+{
+    if (sender is Button button && button.CommandParameter is int rentalId)
+    {
+        await _viewModel.ApproveRental(rentalId);
+    }
+}
+
+// reject request
+private async void RejectButton_Clicked(object sender, EventArgs e)
+{
+    if (sender is Button button && button.CommandParameter is int rentalId)
+    {
+        await _viewModel.RejectRental(rentalId);
+    }
+}
+
 }

@@ -20,7 +20,9 @@ public class RentalsViewModel : BaseViewModel
         Title = "Rentals";
     }
 
-    // loads rental requests
+
+
+// loads rental requests
     public async Task LoadRentals()
     {
         IncomingRentals.Clear();
@@ -38,5 +40,23 @@ public class RentalsViewModel : BaseViewModel
         {
             OutgoingRentals.Add(rental);
         }
+    }
+
+
+     // approve rental request
+    public async Task ApproveRental(int rentalId)
+    {
+        await _rentalService.ApproveRentalAsync(rentalId);
+
+        await LoadRentals();
+    }
+
+
+    // reject rental request
+    public async Task RejectRental(int rentalId)
+    {
+        await _rentalService.RejectRentalAsync(rentalId);
+
+        await LoadRentals();
     }
 }

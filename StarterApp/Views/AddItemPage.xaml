@@ -7,7 +7,7 @@
     Title="Add Item">
 
     <ScrollView>
-        
+
 <!--! Main page layout -->
         <VerticalStackLayout Padding="20" Spacing="15">
 
@@ -36,7 +36,7 @@
 
             <Button
                 Text="Save Item"
-                Clicked="SaveButton_Clicked" />
+                Command="{Binding SaveItemCommand}" />
 
         </VerticalStackLayout>
 

@@ -22,13 +22,4 @@ public partial class EditItemPage : ContentPage
         await _viewModel.LoadItem(itemId);
     }
 
-    // saves updated item
-    private async void SaveButton_Clicked(object sender, EventArgs e)
-    {
-        await _viewModel.SaveChanges();
-
-        await DisplayAlert("Saved", "Item updated", "OK");
-
-        await Navigation.PopAsync();
-    }
 }

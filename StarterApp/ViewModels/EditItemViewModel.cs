@@ -1,9 +1,10 @@
 using StarterApp.Database.Models;
 using StarterApp.Services;
+using CommunityToolkit.Mvvm.Input;
 
 namespace StarterApp.ViewModels;
 
-public class EditItemViewModel : BaseViewModel
+public partial class EditItemViewModel : BaseViewModel
 {
     private readonly IItemService _itemService;
 
@@ -38,8 +39,8 @@ public class EditItemViewModel : BaseViewModel
             PriceText = _item.PricePerDay.ToString();
         }
     }
-
-    // saves changed item
+// saves changed item
+[RelayCommand]
     public async Task SaveChanges()
     {
         if (_item == null)

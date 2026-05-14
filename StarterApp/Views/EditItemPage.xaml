@@ -36,7 +36,7 @@
 
             <Button
                 Text="Save Changes"
-                Clicked="SaveButton_Clicked" />
+                Command="{Binding SaveChangesCommand}" />
 
         </VerticalStackLayout>
 

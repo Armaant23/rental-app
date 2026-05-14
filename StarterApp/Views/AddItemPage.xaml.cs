@@ -16,11 +16,4 @@ public partial class AddItemPage : ContentPage
         BindingContext = _viewModel;
     }
 
-    private async void SaveButton_Clicked(object sender, EventArgs e)
-    {
-        // saves item into database
-        await _viewModel.SaveItem();
-
-        await DisplayAlert("Success", "Item saved", "OK");
-    }
 }

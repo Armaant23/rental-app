@@ -4,7 +4,8 @@ using StarterApp.Database.Data;
 using StarterApp.Views;
 using System.Diagnostics;
 using StarterApp.Services;
-
+using StarterApp.Database.Models;
+using StarterApp.Database.Data.Repositories;
 
 namespace StarterApp;
 
@@ -24,7 +25,9 @@ public static class MauiProgram
         builder.Services.AddDbContext<AppDbContext>();
 
 
-
+// repositories
+        builder.Services.AddTransient<IRepository<Item>, ItemRepository>();
+        builder.Services.AddTransient<IRepository<Rental>, RentalRepository>();
 
 // switches between local auth and api auth
 var useApiAuth = true;

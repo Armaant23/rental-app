@@ -33,6 +33,13 @@
                 FontSize="20"
                 FontAttributes="Bold" />
 
+            <Button
+                Text="Request Rental"
+                BackgroundColor="DarkGreen"
+                TextColor="White"
+                Margin="0,15,0,0"
+                Clicked="RentalButton_Clicked" />
+
             <!-- delete button -->
             <Button
                 Text="Delete Item"

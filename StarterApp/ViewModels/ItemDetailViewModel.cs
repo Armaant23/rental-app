@@ -6,18 +6,22 @@ namespace StarterApp.ViewModels;
 public class ItemDetailViewModel : BaseViewModel
 {
     private readonly IItemService _itemService;
+    private readonly IRentalService _rentalService;
+
 
     private Item? _itemData;
+
     public Item? ItemData
     {
         get => _itemData;
         set => SetProperty(ref _itemData, value);
-        }
-    // connects from service to viewmodel
-    public ItemDetailViewModel(IItemService itemService)
+    }
+    // connects from services to viewmodel
+    public ItemDetailViewModel(IItemService itemService, IRentalService rentalService)
     {
         _itemService = itemService;
-        
+        _rentalService = rentalService;
+
         Title = "Item Details";
     }
 
@@ -25,6 +29,23 @@ public class ItemDetailViewModel : BaseViewModel
     public async Task LoadItem(int itemId)
     {
         ItemData = await _itemService.GetItemByIdAsync(itemId);
+    }
+
+    // request to rent item
+    public async Task RequestRental()
+    {
+        if (ItemData != null)
+        {
+            var rental = new Rental
+            {
+                ItemId = ItemData.Id,
+                OwnerId = ItemData.OwnerId,
+                BorrowerId = 1,
+                Status = "Requested"
+            };
+
+            await _rentalService.AddRentalRequestAsync(rental);
+        }
     }
 
 

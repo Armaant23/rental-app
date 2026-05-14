@@ -130,7 +130,20 @@ public class ApiAuthenticationService : IAuthenticationService
 
         return true;
     }
+    // tests an authenticated API request using the saved JWT token
+    public async Task<bool> TestAuthenticatedRequestAsync()
+    {
+        var tokenReady = await AddTokenToRequestAsync();
 
+        if (!tokenReady)
+        {
+            return false;
+        }
+
+        var response = await _httpClient.GetAsync("users/me");
+
+        return response.IsSuccessStatusCode;
+    }
     // Clears the saved JWT token and resets the current user
     public async Task LogoutAsync()
     {

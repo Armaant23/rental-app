@@ -84,6 +84,23 @@ public partial class LoginViewModel : BaseViewModel
 
             if (result.IsSuccess)
             {
+                var tokenWorked = await _authService.TestAuthenticatedRequestAsync();
+                
+                if (tokenWorked)
+                {
+                    await Shell.Current.DisplayAlert(
+                        "API Test",
+                        "Authenticated API request worked",
+                        "OK");
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert(
+                        "API Test",
+                        "Authenticated API request failed",
+                        "OK");
+                }
+
                 await _navigationService.NavigateToAsync("MainPage");
             }
             else

@@ -18,5 +18,6 @@ public interface IAuthenticationService
     bool HasAnyRole(params string[] roleNames);
     bool HasAllRoles(params string[] roleNames);
     
+    Task<bool> TestAuthenticatedRequestAsync();
     Task<bool> ChangePasswordAsync(string currentPassword, string newPassword);
 }

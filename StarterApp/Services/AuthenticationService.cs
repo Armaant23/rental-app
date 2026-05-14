@@ -129,6 +129,12 @@ public class AuthenticationService : IAuthenticationService
         return roleNames.All(role => HasRole(role));
     }
 
+    // local auth test
+    public Task<bool> TestAuthenticatedRequestAsync()
+    {
+        return Task.FromResult(IsAuthenticated);
+    }
+
     public async Task<bool> ChangePasswordAsync(string currentPassword, string newPassword)
     {
         if (_currentUser == null)

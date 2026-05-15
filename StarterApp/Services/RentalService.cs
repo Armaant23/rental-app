@@ -22,6 +22,15 @@ public class RentalService : IRentalService
         await _db.SaveChangesAsync();
     }
 
+    // checks if user already requested this item
+    public async Task<bool> HasExistingRequestAsync(int itemId, int borrowerId)
+    {
+        return await _db.Rentals.AnyAsync(r =>
+            r.ItemId == itemId &&
+            r.BorrowerId == borrowerId &&
+            r.Status != "Rejected");
+    }
+
     // gets requests for item owner
     public async Task<List<Rental>> GetIncomingRequestsAsync(int ownerId)
     {

@@ -19,6 +19,7 @@ public class Rental
 
     public DateTime EndDate { get; set; } = DateTime.UtcNow.AddDays(1);
 
+    public decimal TotalPrice { get; set; }
     public string Status { get; set; } = "Requested";
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

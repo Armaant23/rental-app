@@ -31,23 +31,33 @@ public partial class ItemDetailViewModel : BaseViewModel
         ItemData = await _itemService.GetItemByIdAsync(itemId);
     }
 
-    // request to rent item
-    [RelayCommand]
-    public async Task RequestRental()
+// request to rent item
+[RelayCommand]
+public async Task RequestRental()
+{
+    if (ItemData != null)
     {
-        if (ItemData != null)
-        {
-            var rental = new Rental
-            {
-                ItemId = ItemData.Id,
-                OwnerId = ItemData.OwnerId,
-                BorrowerId = 1,
-                Status = "Requested"
-            };
+        // basic 1 day rental
+        var startDate = DateTime.UtcNow;
+        var endDate = startDate.AddDays(1);
 
-            await _rentalService.AddRentalRequestAsync(rental);
-        }
+    // works out rental price
+        var totalPrice = ItemData.PricePerDay * 1;
+
+        var rental = new Rental
+        {
+            ItemId = ItemData.Id,
+            OwnerId = ItemData.OwnerId,
+            BorrowerId = 1,
+            StartDate = startDate,
+            EndDate = endDate,
+            TotalPrice = totalPrice,
+            Status = "Requested"
+        };
+
+        await _rentalService.AddRentalRequestAsync(rental);
     }
+}
 
 
     // delete current item
